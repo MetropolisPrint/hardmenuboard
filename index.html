@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hard Menu Board</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper {
+      padding: 16px;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      max-width: 480px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .deskripsi {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    select, input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #d35400;
+      background: #fff6e5;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    .note b {
+      display: block;
+      font-size: 16px;
+      color: #c0392b;
+      margin-bottom: 6px;
+    }
+    button {
+      width: 100%;
+      margin-top: 20px;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1ebe5d;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <form onsubmit="sendToWhatsApp(); return false;">
+      <h2>Pesan "Hard Menu Board"</h2>
+      <div class="deskripsi">
+        Menu adalah pedoman bagi yang menyiapkan makanan/hidangan, bahkan merupakan penuntun bagi mereka yang menikmatinya karena akan tergambar tentang apa dan bagaimana makanan tersebut dibuat. Hard Menu adalah papan daftar menu untuk restoran, kantin maupun cafe yang terbuat dari karton tebal (3 mm) yang dilapisi oleh stiker yang sudah dicetak sesuai desain Anda dan diberi lapisan laminasi untuk hasil yang lebih bagus, lebih kuat dan tahan lama.
+      </div>
+
+      <label>Nama Anda</label>
+      <input type="text" id="nama" required>
+
+      <label>Nomor WhatsApp Anda</label>
+      <input type="tel" id="nowa" pattern="[0-9]+" required>
+
+      <label>Ukuran</label>
+      <select id="ukuran" required>
+        <option value="" disabled selected>Pilih ukuran</option>
+        <option value="A5 (14,8 x 21 cm)">A5 (14,8 x 21 cm)</option>
+        <option value="A4 (21 x 29,7 cm)">A4 (21 x 29,7 cm)</option>
+        <option value="F4 (21,5 x 33 cm)">F4 (21,5 x 33 cm)</option>
+        <option value="A3 (29,7 x 42 cm)">A3 (29,7 x 42 cm)</option>
+      </select>
+
+      <label>Sisi</label>
+      <select id="sisi" required>
+        <option value="" disabled selected>Pilih sisi cetak</option>
+        <option value="1 Sisi">1 Sisi</option>
+        <option value="2 Sisi">2 Sisi</option>
+      </select>
+
+      <label>Bahan</label>
+      <select id="bahan" required>
+        <option value="Hard Board 3 mm (Karton Tebal)">Hard Board 3 mm (Karton Tebal)</option>
+      </select>
+
+      <label>Jenis Laminasi</label>
+      <select id="laminasi" required>
+        <option value="" disabled selected>Pilih jenis laminasi</option>
+        <option value="Mengkilap (Glossy)">Mengkilap (Glossy)</option>
+        <option value="Matte (Doff)">Matte (Doff)</option>
+      </select>
+
+      <label>Jumlah Menu (Pcs)</label>
+      <input type="number" id="jumlah" min="1" required>
+
+      <label>Anda membutuhkan print ini kapan?</label>
+      <input type="date" id="tanggal" required>
+
+      <label>Pada jam berapa?</label>
+      <input type="time" id="jam" required>
+
+      <label>Apakah Anda ingin memberikan Catatan Khusus untuk Admin Kami?</label>
+      <textarea id="catatan" rows="4" placeholder="Contoh: Mau beda desain, kirim via email, dll."></textarea>
+
+      <div class="note">
+        <b>Penting !</b>
+        Estimasi Dateline Yang Anda Atur Bisa Berubah Sesuai Kondisi Antrian, Anda Bisa Atur Negosiasi Waktu Dateline Dengan Admin Kami. <b>"Pastikan File Anda Ready / Siap Print"</b>
+      </div>
+
+      <button type="submit">Cek Harga ke Admin Metropolis Print</button>
+    </form>
+  </div>
+
+  <script>
+    function formatTanggalIndo(tanggalInput) {
+      const bulanIndo = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+      const hariIndo = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      const dateObj = new Date(tanggalInput);
+      const hari = hariIndo[dateObj.getDay()];
+      const tanggal = dateObj.getDate();
+      const bulan = bulanIndo[dateObj.getMonth()];
+      const tahun = dateObj.getFullYear();
+      return `${hari}, ${tanggal} ${bulan} ${tahun}`;
+    }
+
+    function sendToWhatsApp() {
+      const adminWa = "6282335222268";
+      const nama = document.getElementById("nama").value;
+      const nowa = document.getElementById("nowa").value;
+      const ukuran = document.getElementById("ukuran").value;
+      const sisi = document.getElementById("sisi").value;
+      const bahan = document.getElementById("bahan").value;
+      const laminasi = document.getElementById("laminasi").value;
+      const jumlah = document.getElementById("jumlah").value;
+      const tanggalRaw = document.getElementById("tanggal").value;
+      const tanggal = formatTanggalIndo(tanggalRaw);
+      const jam = document.getElementById("jam").value;
+      const catatan = document.getElementById("catatan").value || "-";
+
+      const pesan =
+        `📌 Pemesanan Door Frame Banner\n\n` +
+        `👤 Nama: ${nama}\n` +
+        `📱 No. WA: ${nowa}\n` +
+        `📐 Ukuran: ${ukuran}\n` +
+        `🔁 Sisi: ${sisi}\n` +
+        `🧾 Bahan: ${bahan}\n` +
+        `✨ Laminasi: ${laminasi}\n` +
+        `📄 Jumlah: ${jumlah} pcs\n` +
+        `🗓️ Hari Dateline: ${tanggal}\n` +
+        `⏰ Jam Dateline: ${jam}\n` +
+        `📝 Catatan: ${catatan}`;
+
+      const url = `https://wa.me/${adminWa}?text=${encodeURIComponent(pesan)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
